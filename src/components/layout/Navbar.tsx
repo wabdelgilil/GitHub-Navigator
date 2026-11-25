@@ -38,7 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           <Logo size={36} />
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-bold tracking-tight text-white text-base">GitNavigator</span>
+              <span className="font-bold tracking-tight text-white text-base">GitHub-Navigator</span>
               <Badge variant="success" size="sm">Local-First</Badge>
             </div>
             <p className="text-[10px] text-[#8b949e] font-mono leading-none">Executive Command Center</p>
@@ -94,10 +94,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* GitHub Repository Link Button */}
           <a
-            href="https://github.com/wabdelgilil/gitnavigator"
+            href="https://github.com/wabdelgilil/GitHub-Navigator"
             target="_blank"
             rel="noopener noreferrer"
-            title="View GitNavigator Source Code on GitHub"
+            title="View GitHub-Navigator Source Code on GitHub"
             className="p-2 rounded-lg text-[#8b949e] hover:text-white hover:bg-[#21262d] border border-transparent hover:border-[#30363d] transition-colors flex items-center gap-1.5 text-xs font-medium"
           >
             <Github className="w-4 h-4 text-[#58a6ff]" />

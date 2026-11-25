@@ -122,7 +122,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
       {/* Footer Info */}
       <div className="mt-auto pt-4 border-t border-[#30363d]/60 text-[11px] text-[#8b949e] flex items-center justify-between">
-        <span>GitNavigator v1.1.0</span>
+        <span>GitHub-Navigator v1.1.0</span>
         <span className="font-mono text-[#3fb950]">Client-Only</span>
       </div>
     </aside>

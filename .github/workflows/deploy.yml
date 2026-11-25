@@ -1,4 +1,4 @@
-name: Deploy GitNavigator to GitHub Pages
+name: Deploy GitHub-Navigator to GitHub Pages
 
 on:
   push:

@@ -1,8 +1,8 @@
 # System Requirements Specification (SRS)
-## GitNavigator — Personal Command Center & Intelligent Dashboard for GitHub
+## GitHub-Navigator — Personal Command Center & Intelligent Dashboard for GitHub
 
 ### 1. Document Control & Metadata
-- **Project Name:** GitNavigator
+- **Project Name:** GitHub-Navigator
 - **Document Version:** v1.1.0
 - **Classification:** Public Open-Source Software Specification
 - **Architectural Paradigm:** Pure Client-Side Single-Page Application (Vite / React / TypeScript / Tailwind CSS / LocalStorage & IndexedDB)

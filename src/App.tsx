@@ -85,7 +85,7 @@ export const App: React.FC = () => {
                   Take Control of Your GitHub Universe
                 </h1>
                 <p className="text-sm text-[#8b949e] max-w-xl mx-auto leading-relaxed">
-                  GitNavigator is a local-first personal command center that organizes your repositories,
+                  GitHub-Navigator is a local-first personal command center that organizes your repositories,
                   visualizes branch divergence, flags stale projects, and gives you instant search with zero latency.
                 </p>
               </div>

@@ -246,7 +246,7 @@ export const LocalSyncView: React.FC = () => {
         </div>
 
         <p className="text-xs text-[#8b949e] leading-relaxed">
-          Keep your repositories in GitNavigator always up to date without manual effort.
+          Keep your repositories in GitHub-Navigator always up to date without manual effort.
           Run <code className="text-[#3fb950] bg-[#0d1117] px-1.5 py-0.5 rounded">Sync_All_Projects.bat --auto</code> via
           Windows Task Scheduler every hour or upon user logon:
         </p>

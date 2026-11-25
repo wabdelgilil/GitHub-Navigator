@@ -1,4 +1,4 @@
-# Master Plan: GitNavigator Development Radar
+# Master Plan: GitHub-Navigator Development Radar
 **Active-Only Project Radar & Single Source of Truth**
 
 ---

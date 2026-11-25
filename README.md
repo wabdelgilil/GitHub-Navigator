@@ -1,14 +1,14 @@
-# GitNavigator
+# GitHub-Navigator
 
 An open-source, local-first personal command center and executive dashboard for managing your GitHub repositories, branches, and commit histories with zero latency.
 
-> 🚀 **Official Desktop Companion:** Pair GitNavigator with [GitHub-Sync-Hub](https://github.com/wabdelgilil/GitHub-Sync-Hub) — standalone single-file portable Windows utilities (Dark Mode WPF + System Tray + ANSI CLI) for automated two-way synchronization across your workspaces!
+> 🚀 **Official Desktop Companion:** Pair GitHub-Navigator with [GitHub-Sync-Hub](https://github.com/wabdelgilil/GitHub-Sync-Hub) — standalone single-file portable Windows utilities (Dark Mode WPF + System Tray + ANSI CLI) for automated two-way synchronization across your workspaces!
 
 ---
 
 ## 🔄 Official Companion: GitHub-Sync-Hub
 
-GitNavigator is designed to work hand-in-hand with [GitHub-Sync-Hub](https://github.com/wabdelgilil/GitHub-Sync-Hub), an open-source suite of zero-dependency Windows launchers for safe two-way Git synchronization (`pull --rebase --autostash`, `commit`, and `push`).
+GitHub-Navigator is designed to work hand-in-hand with [GitHub-Sync-Hub](https://github.com/wabdelgilil/GitHub-Sync-Hub), an open-source suite of zero-dependency Windows launchers for safe two-way Git synchronization (`pull --rebase --autostash`, `commit`, and `push`).
 
 ### Direct Standalone Downloads (No Git Clone Required)
 
@@ -64,8 +64,8 @@ The utilities automatically adapt to any environment using a deterministic three
 
 ### Installation & Local Run
 ```bash
-git clone https://github.com/wabdelgilil/gitnavigator.git
-cd gitnavigator
+git clone https://github.com/wabdelgilil/GitHub-Navigator.git
+cd GitHub-Navigator
 npm install
 npm run dev
 ```
@@ -82,7 +82,7 @@ npm run preview
 
 ## Architecture Overview
 
-GitNavigator is built as a pure client-side single-page application using:
+GitHub-Navigator is built as a pure client-side single-page application using:
 - **Vite** for optimized development and bundling
 - **React 18** and **TypeScript** (Strict Mode)
 - **Tailwind CSS** for layout and dark-mode styling

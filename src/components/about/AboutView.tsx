@@ -17,7 +17,7 @@ import { Button } from '../common/Button';
 import { Badge } from '../common/Badge';
 
 export const AboutView: React.FC = () => {
-  const REPO_URL = 'https://github.com/wabdelgilil/gitnavigator';
+  const REPO_URL = 'https://github.com/wabdelgilil/GitHub-Navigator';
   const ISSUES_URL = `${REPO_URL}/issues`;
 
   return (
@@ -33,7 +33,7 @@ export const AboutView: React.FC = () => {
         <div className="space-y-2">
           <div className="flex items-center justify-center gap-2">
             <h1 className="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">
-              GitNavigator
+              GitHub-Navigator
             </h1>
             <Badge variant="success" size="md">v1.1.0</Badge>
           </div>
@@ -65,11 +65,11 @@ export const AboutView: React.FC = () => {
         </div>
       </div>
 
-      {/* Why GitNavigator? Problem & Solution */}
+      {/* Why GitHub-Navigator? Problem & Solution */}
       <div className="bg-[#161b22] border border-[#30363d] rounded-xl p-6 space-y-4">
         <h3 className="text-base font-semibold text-[#e6edf3] flex items-center gap-2">
           <Layers className="w-4 h-4 text-[#58a6ff]" />
-          <span>Why GitNavigator?</span>
+          <span>Why GitHub-Navigator?</span>
         </h3>
         <p className="text-xs text-[#8b949e] leading-relaxed">
           GitHub’s default repository interface is structured for social browsing and basic listings,
@@ -78,7 +78,7 @@ export const AboutView: React.FC = () => {
           groupings requires repetitive navigation.
         </p>
         <p className="text-xs text-[#8b949e] leading-relaxed">
-          <strong className="text-[#c9d1d9]">GitNavigator</strong> bridges this gap by providing an executive
+          <strong className="text-[#c9d1d9]">GitHub-Navigator</strong> bridges this gap by providing an executive
           command center that runs entirely in your browser with instantaneous client-side search, multi-mode catalog views,
           interactive branch divergence trees, and workspace hygiene audits.
         </p>
@@ -166,7 +166,7 @@ export const AboutView: React.FC = () => {
             <Heart className="w-3.5 h-3.5 text-[#f85149] fill-current" />
           </h4>
           <p className="text-xs text-[#8b949e]">
-            GitNavigator is free and open-source. Contributions, PRs, and suggestions are welcome.
+            GitHub-Navigator is free and open-source. Contributions, PRs, and suggestions are welcome.
           </p>
         </div>
 
@@ -176,7 +176,7 @@ export const AboutView: React.FC = () => {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#21262d] hover:bg-[#30363d] text-white text-xs font-semibold border border-[#30363d] hover:border-[#58a6ff] transition-all shrink-0"
         >
-          <span>github.com/wabdelgilil/gitnavigator</span>
+          <span>github.com/wabdelgilil/GitHub-Navigator</span>
           <ExternalLink className="w-3.5 h-3.5 text-[#58a6ff]" />
         </a>
       </div>
