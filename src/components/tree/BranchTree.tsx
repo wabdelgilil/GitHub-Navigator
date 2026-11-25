@@ -18,6 +18,7 @@ import { Badge } from '../common/Badge';
 import { CommitTimeline } from './CommitTimeline';
 import { FileTreeExplorer } from './FileTreeExplorer';
 import { VisualBranchNetwork } from './VisualBranchNetwork';
+import { SearchableRepoSelect } from '../common/SearchableRepoSelect';
 
 export const BranchTree: React.FC = () => {
   const { token } = useAuth();
@@ -112,22 +113,14 @@ export const BranchTree: React.FC = () => {
         <p className="text-xs text-[#8b949e] max-w-md mx-auto">
           Choose a repository from your catalog to visualize branch divergence, ahead/behind commits, and file tree structure.
         </p>
-        <div className="max-w-xs mx-auto pt-2">
-          <select
-            onChange={(e) => {
-              const target = repositories.find((r) => r.id === Number(e.target.value));
-              if (target) setSelectedRepo(target);
-            }}
-            defaultValue=""
-            className="w-full bg-[#0d1117] border border-[#30363d] text-xs text-[#c9d1d9] rounded-lg p-2.5 focus:border-[#58a6ff] focus:outline-none"
-          >
-            <option value="" disabled>Choose a repository...</option>
-            {repositories.map((r) => (
-              <option key={r.id} value={r.id}>
-                {r.name} {r.private ? '🔒' : '🌐'}
-              </option>
-            ))}
-          </select>
+        <div className="flex justify-center pt-2">
+          <SearchableRepoSelect
+            repositories={repositories}
+            selectedRepo={null}
+            onSelectRepo={setSelectedRepo}
+            placeholder="Search and choose a repository..."
+            width="w-80"
+          />
         </div>
       </div>
     );
@@ -145,20 +138,12 @@ export const BranchTree: React.FC = () => {
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <select
-                value={selectedRepo.id}
-                onChange={(e) => {
-                  const target = repositories.find((r) => r.id === Number(e.target.value));
-                  if (target) setSelectedRepo(target);
-                }}
-                className="bg-[#0d1117] border border-[#30363d] text-sm font-semibold text-[#e6edf3] rounded-lg px-2.5 py-1 focus:border-[#58a6ff] focus:outline-none cursor-pointer"
-              >
-                {repositories.map((r) => (
-                  <option key={r.id} value={r.id}>
-                    {r.name}
-                  </option>
-                ))}
-              </select>
+              <SearchableRepoSelect
+                repositories={repositories}
+                selectedRepo={selectedRepo}
+                onSelectRepo={setSelectedRepo}
+                width="w-72"
+              />
               <Badge variant={selectedRepo.private ? 'warning' : 'success'} size="sm">
                 {selectedRepo.private ? 'Private' : 'Public'}
               </Badge>
