@@ -26,7 +26,7 @@ export const LocalSyncView: React.FC = () => {
       category: 'Multi-Project Workspace',
       interface: 'WPF Dark GUI + System Tray',
       description:
-        'Drop into any parent workspace folder. Discovers all Git repositories, shows live progress bars, minimizes to the Windows System Tray with right-click menu, and delivers native notifications.',
+        'Drop into any workspace or launch with built-in folder browser. Discovers all Git repositories, live status table, selective checkboxes, System Tray minimization, and native notifications.',
       downloadUrl: `${RAW_BASE}/Sync_All_Projects_GUI.bat`,
       icon: Monitor,
       highlight: true,
@@ -38,7 +38,7 @@ export const LocalSyncView: React.FC = () => {
       category: 'Multi-Project Workspace',
       interface: 'Interactive Terminal + Animated Spinner',
       description:
-        'Keyboard-driven bulk synchronizer with animated spinners. Supports unattended automation via the --auto flag for Windows Task Scheduler.',
+        'Keyboard-driven bulk synchronizer with animated spinners. Supports dynamic target directory arguments and unattended automation via the --auto flag.',
       downloadUrl: `${RAW_BASE}/Sync_All_Projects.bat`,
       icon: Terminal,
       highlight: false,

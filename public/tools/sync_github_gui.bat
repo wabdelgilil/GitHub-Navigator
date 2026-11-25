@@ -1,24 +1,99 @@
 @echo off
 chcp 65001 >nul
 setlocal
-start "" /b powershell.exe -NoProfile -WindowStyle Hidden -STA -ExecutionPolicy Bypass -Command "$code = (Get-Content -Encoding UTF8 '%~f0' | Select-Object -Skip 6) -join [Environment]::NewLine; & ([ScriptBlock]::Create($code)) -ScriptDir '%~dp0'"
+
+set "BATCH_PATH=%~f0"
+set "SYNC_SCRIPT_DIR=%~dp0"
+set "TARGET_DIR="
+
+:parse_args
+if "%~1"=="" goto done_args
+if /I "%~1"=="--dir" (
+    if not "%~2"=="" (
+        set "TARGET_DIR=%~2"
+        shift /1
+    )
+    shift /1
+    goto parse_args
+)
+if not defined TARGET_DIR (
+    set "TARGET_DIR=%~1"
+    shift /1
+    goto parse_args
+)
+shift /1
+goto parse_args
+:done_args
+
+set "SYNC_TARGET_DIR=%TARGET_DIR%"
+
+start "" /b powershell.exe -NoProfile -WindowStyle Hidden -STA -ExecutionPolicy Bypass -Command "$code = (Get-Content -Encoding UTF8 $env:BATCH_PATH | Select-Object -Skip 32) -join [Environment]::NewLine; & ([ScriptBlock]::Create($code)) -ScriptDir $env:SYNC_SCRIPT_DIR -TargetDir $env:SYNC_TARGET_DIR"
 exit /b 0
 :: --- POWERSHELL PAYLOAD BELOW ---
 param(
-    [string]$ScriptDir = (Get-Location).Path
+    [string]$TargetDir = "",
+    [string]$ScriptDir = ""
 )
 
-Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase
+Add-Type -AssemblyName PresentationFramework, PresentationCore, WindowsBase, System.Windows.Forms
 
-# Resolve Git repo root from wherever this .bat was launched
-Set-Location $ScriptDir
+# Early Git Verification
+if (-not (Get-Command git -ErrorAction SilentlyContinue)) {
+    [System.Windows.Forms.MessageBox]::Show(
+        "Git is not installed or not found in system PATH.`n`nPlease install Git for Windows (https://git-scm.com) and ensure 'git.exe' is available in your PATH.",
+        "GitHub Sync - Git Not Found",
+        [System.Windows.Forms.MessageBoxButtons]::OK,
+        [System.Windows.Forms.MessageBoxIcon]::Error
+    ) | Out-Null
+    exit 1
+}
+
+# Resolve script directory (default fallback: %~dp0 or current directory)
+if ([string]::IsNullOrWhiteSpace($ScriptDir)) {
+    $ScriptDir = (Get-Location).Path
+}
+$fallbackDir = (Resolve-Path -LiteralPath $ScriptDir -ErrorAction SilentlyContinue).Path
+if (-not $fallbackDir) { $fallbackDir = $ScriptDir.TrimEnd('\', '/') }
+
+$chosenDir = $null
+
+# Priority 1: Check if a path argument is provided via command line
+if (-not [string]::IsNullOrWhiteSpace($TargetDir)) {
+    if (Test-Path -LiteralPath $TargetDir) {
+        $chosenDir = (Resolve-Path -LiteralPath $TargetDir -ErrorAction SilentlyContinue).Path
+    }
+}
+
+# Priority 2: If no argument is passed in GUI mode, open native FolderBrowserDialog
+if (-not $chosenDir) {
+    $fbd = New-Object System.Windows.Forms.FolderBrowserDialog
+    $fbd.Description = "Select a Git Repository Root Folder (Click Cancel to use script directory)"
+    $fbd.ShowNewFolderButton = $false
+    if (Test-Path -LiteralPath $fallbackDir) {
+        $fbd.SelectedPath = $fallbackDir
+    }
+    $dialogRes = $fbd.ShowDialog()
+    if ($dialogRes -eq [System.Windows.Forms.DialogResult]::OK -and -not [string]::IsNullOrWhiteSpace($fbd.SelectedPath)) {
+        if (Test-Path -LiteralPath $fbd.SelectedPath) {
+            $chosenDir = (Resolve-Path -LiteralPath $fbd.SelectedPath).Path
+        }
+    }
+    $fbd.Dispose()
+}
+
+# Priority 3: Fall back to %~dp0 (script folder)
+if (-not $chosenDir) {
+    $chosenDir = $fallbackDir
+}
+
+Set-Location $chosenDir
 $RepoRoot = (git rev-parse --show-toplevel 2>$null)
 if (-not $RepoRoot) {
-    [System.Windows.MessageBox]::Show(
-        "This folder is not inside a Git repository:`n$ScriptDir",
-        "GitHub Sync - Error",
-        [System.Windows.MessageBoxButton]::OK,
-        [System.Windows.MessageBoxImage]::Error
+    [System.Windows.Forms.MessageBox]::Show(
+        "The selected folder is not inside a Git repository:`n`n$chosenDir`n`nTips:`n- Ensure this folder or a parent directory contains a .git folder.`n- For parent folders containing multiple repositories, use Sync_All_Projects_GUI.bat instead.",
+        "GitHub Sync - Git Repository Not Found",
+        [System.Windows.Forms.MessageBoxButtons]::OK,
+        [System.Windows.Forms.MessageBoxIcon]::Warning
     ) | Out-Null
     exit 1
 }
@@ -172,7 +247,7 @@ function Add-Log([string]$msg) {
     Do-Events
 }
 
-function Run-Git([string]$argsStr) {
+function Run-Git([string]$argsStr, [int]$timeoutSec = 120) {
     $psi = New-Object System.Diagnostics.ProcessStartInfo
     $psi.FileName = "git"
     $psi.Arguments = $argsStr
@@ -184,14 +259,23 @@ function Run-Git([string]$argsStr) {
     $psi.StandardOutputEncoding = [System.Text.Encoding]::UTF8
     $psi.StandardErrorEncoding = [System.Text.Encoding]::UTF8
     $p = [System.Diagnostics.Process]::Start($psi)
+
+    # Async pipe drain prevents buffer deadlocks
+    $outTask = $p.StandardOutput.ReadToEndAsync()
+    $errTask = $p.StandardError.ReadToEndAsync()
+    $sw = [System.Diagnostics.Stopwatch]::StartNew()
     while (-not $p.HasExited) {
-        Start-Sleep -Milliseconds 40
+        if ($sw.Elapsed.TotalSeconds -gt $timeoutSec) {
+            try { $p.Kill() } catch {}
+            return [PSCustomObject]@{ ExitCode = -1; Out = ""; Err = "Timed out after ${timeoutSec}s" }
+        }
+        Start-Sleep -Milliseconds 30
         Do-Events
     }
     return [PSCustomObject]@{
         ExitCode = $p.ExitCode
-        Out      = $p.StandardOutput.ReadToEnd().Trim()
-        Err      = $p.StandardError.ReadToEnd().Trim()
+        Out      = $outTask.GetAwaiter().GetResult().Trim()
+        Err      = $errTask.GetAwaiter().GetResult().Trim()
     }
 }
 

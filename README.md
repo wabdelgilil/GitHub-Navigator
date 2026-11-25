@@ -2,6 +2,42 @@
 
 An open-source, local-first personal command center and executive dashboard for managing your GitHub repositories, branches, and commit histories with zero latency.
 
+> 🚀 **Official Desktop Companion:** Pair GitNavigator with [GitHub-Sync-Hub](https://github.com/wabdelgilil/GitHub-Sync-Hub) — standalone single-file portable Windows utilities (Dark Mode WPF + System Tray + ANSI CLI) for automated two-way synchronization across your workspaces!
+
+---
+
+## 🔄 Official Companion: GitHub-Sync-Hub
+
+GitNavigator is designed to work hand-in-hand with [GitHub-Sync-Hub](https://github.com/wabdelgilil/GitHub-Sync-Hub), an open-source suite of zero-dependency Windows launchers for safe two-way Git synchronization (`pull --rebase --autostash`, `commit`, and `push`).
+
+### Direct Standalone Downloads (No Git Clone Required)
+
+| Utility | Interface | Direct 1-Click Download | Description |
+| :--- | :--- | :--- | :--- |
+| **`Sync_All_Projects_GUI.bat`** | Modern Dark Mode WPF + System Tray | [⬇️ Download `Sync_All_Projects_GUI.bat`](https://raw.githubusercontent.com/wabdelgilil/GitHub-Sync-Hub/main/tools/Sync_All_Projects_GUI.bat) | Multi-repo dashboard with live checkboxes, runtime folder browser, and native Windows notifications |
+| **`Sync_All_Projects.bat`** | ANSI Terminal + Spinners | [⬇️ Download `Sync_All_Projects.bat`](https://raw.githubusercontent.com/wabdelgilil/GitHub-Sync-Hub/main/tools/Sync_All_Projects.bat) | Keyboard-driven bulk sync & unattended `--auto` Task Scheduler automation |
+| **`sync_github_gui.bat`** | Compact Dark Mode WPF | [⬇️ Download `sync_github_gui.bat`](https://raw.githubusercontent.com/wabdelgilil/GitHub-Sync-Hub/main/tools/sync_github_gui.bat) | Visual single-repo status overview & 1-click sync |
+| **`sync_github.bat`** | Lightweight Terminal | [⬇️ Download `sync_github.bat`](https://raw.githubusercontent.com/wabdelgilil/GitHub-Sync-Hub/main/tools/sync_github.bat) | Double-click or CLI single-repo sync |
+
+> **Browser Download Tip:** Right-click any download link above and choose **Save link as...** to save the `.bat` file directly into your projects folder.
+
+### 100% Portable Directory Resolution
+
+The utilities automatically adapt to any environment using a deterministic three-tier priority flow:
+1. **Command-line Argument:** `Sync_All_Projects.bat "C:\Users\<user>\Projects"` or `--dir "%USERPROFILE%\Projects"`
+2. **Interactive Folder Picker:** In GUI mode, launching without arguments opens a native Windows `FolderBrowserDialog`.
+3. **Fallback Script Location:** Defaults to `%~dp0` (the folder where the script is located).
+
+```text
+  Target Workspace Directory / (e.g. %USERPROFILE%\Projects\)
+  ├── Project-Alpha/
+  │   └── .git/               --> [DETECTED] Syncs branch origin/main
+  ├── Project-Beta/
+  │   └── .git/               --> [DETECTED] Syncs branch origin/dev
+  ├── Documentation/          --> [SKIPPED]  No .git folder
+  └── Sync_All_Projects_GUI.bat
+```
+
 ---
 
 ## Key Highlights
