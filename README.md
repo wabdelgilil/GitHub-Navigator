@@ -1,78 +1,108 @@
 # GitHub-Navigator
 
-An open-source, local-first personal command center and executive dashboard for managing your GitHub repositories, branches, and commit histories with zero latency.
+<div align="center">
 
-> 🚀 **Official Desktop Companion:** Pair GitHub-Navigator with [GitHub-Sync-Hub](https://github.com/wabdelgilil/GitHub-Sync-Hub) — standalone single-file portable Windows utilities (Dark Mode WPF + System Tray + ANSI CLI) for automated two-way synchronization across your workspaces!
+![GitHub-Navigator Logo](public/favicon.svg)
 
----
+### Personal Command Center & Executive Dashboard for GitHub
 
-## 🔄 Official Companion: GitHub-Sync-Hub
+An open-source, local-first web application designed to navigate, search, and visualize your GitHub repositories, diverging branches, and commit histories with zero latency.
 
-GitHub-Navigator is designed to work hand-in-hand with [GitHub-Sync-Hub](https://github.com/wabdelgilil/GitHub-Sync-Hub), an open-source suite of zero-dependency Windows launchers for safe two-way Git synchronization (`pull --rebase --autostash`, `commit`, and `push`).
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2ea44f?style=for-the-badge&logo=github)](https://wabdelgilil.github.io/GitHub-Navigator/)
+[![React](https://img.shields.io/badge/React-18.3-61dafb?style=for-the-badge&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.5-3178c6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.4-646cff?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-### Direct Standalone Downloads (No Git Clone Required)
+[**Explore Live Web App »**](https://wabdelgilil.github.io/GitHub-Navigator/)
 
-| Utility | Interface | Direct 1-Click Download | Description |
-| :--- | :--- | :--- | :--- |
-| **`Sync_All_Projects_GUI.bat`** | Modern Dark Mode WPF + System Tray | [⬇️ Download `Sync_All_Projects_GUI.bat`](https://raw.githubusercontent.com/wabdelgilil/GitHub-Sync-Hub/main/tools/Sync_All_Projects_GUI.bat) | Multi-repo dashboard with live checkboxes, runtime folder browser, and native Windows notifications |
-| **`Sync_All_Projects.bat`** | ANSI Terminal + Spinners | [⬇️ Download `Sync_All_Projects.bat`](https://raw.githubusercontent.com/wabdelgilil/GitHub-Sync-Hub/main/tools/Sync_All_Projects.bat) | Keyboard-driven bulk sync & unattended `--auto` Task Scheduler automation |
-| **`sync_github_gui.bat`** | Compact Dark Mode WPF | [⬇️ Download `sync_github_gui.bat`](https://raw.githubusercontent.com/wabdelgilil/GitHub-Sync-Hub/main/tools/sync_github_gui.bat) | Visual single-repo status overview & 1-click sync |
-| **`sync_github.bat`** | Lightweight Terminal | [⬇️ Download `sync_github.bat`](https://raw.githubusercontent.com/wabdelgilil/GitHub-Sync-Hub/main/tools/sync_github.bat) | Double-click or CLI single-repo sync |
-
-> **Browser Download Tip:** Right-click any download link above and choose **Save link as...** to save the `.bat` file directly into your projects folder.
-
-### 100% Portable Directory Resolution
-
-The utilities automatically adapt to any environment using a deterministic three-tier priority flow:
-1. **Command-line Argument:** `Sync_All_Projects.bat "C:\Users\<user>\Projects"` or `--dir "%USERPROFILE%\Projects"`
-2. **Interactive Folder Picker:** In GUI mode, launching without arguments opens a native Windows `FolderBrowserDialog`.
-3. **Fallback Script Location:** Defaults to `%~dp0` (the folder where the script is located).
-
-```text
-  Target Workspace Directory / (e.g. %USERPROFILE%\Projects\)
-  ├── Project-Alpha/
-  │   └── .git/               --> [DETECTED] Syncs branch origin/main
-  ├── Project-Beta/
-  │   └── .git/               --> [DETECTED] Syncs branch origin/dev
-  ├── Documentation/          --> [SKIPPED]  No .git folder
-  └── Sync_All_Projects_GUI.bat
-```
+</div>
 
 ---
 
-## Key Highlights
+## 🎯 Overview
 
-- **Multiple View Modes**: Default detailed Data Table, Compact List, and Cards Grid with fast switcher.
-- **Instant Multi-Vector Search**: Client-side fuzzy searching across repository names, topics, descriptions, and programming languages.
-- **Searchable Dropdown Select**: Fast searchable repository combobox in branch tree and commit views.
-- **Visual Branch Network**: Interactive SVG Bézier curve branching graph with drag-to-pan, mouse wheel / button zoom in/out, fullscreen canvas, and ahead/behind calculations.
-- **Embedded Code & Markdown Viewer**: PrismJS syntax highlighting (Tomorrow Dark) and GitHub Flavored Markdown viewer (`react-markdown` + `remark-gfm`) with line numbers, raw/preview toggle, and one-click copy.
-- **Local Sync Hub Companion**: Deep integration with `GitHub-Sync-Hub` companion scripts (`Sync_All_Projects_GUI.bat`, etc.), 1-click batch downloads, single-repo custom sync script generator, and automated Windows Task Scheduler guides.
-- **Segmented Catalog**: One-click toggling between Public, Private, Forked, Source, and Archived repositories.
-- **Workspace Hygiene Radar**: Identifies repositories inactive for over six months to streamline profile maintenance.
-- **Local Custom Labels**: Personal tags and groupings stored in browser local storage without modifying remote repository settings.
-- **Local-First Security**: Personal Access Tokens communicate directly from the browser to the GitHub API. No intermediate backend servers or telemetry.
+GitHub’s default web interface is structured around single-repository deep dives and social timelines. For developers, leads, and organizations managing dozens or hundreds of repositories, finding projects, auditing branch divergence, or inspecting files across repositories often feels fragmented and slow.
+
+**GitHub-Navigator** bridges this gap. It acts as your personal command bridge:
+- Runs **100% inside your browser** (Pure Single-Page Application).
+- Direct, secure communication with GitHub’s REST and GraphQL APIs.
+- Your Personal Access Token stays strictly in browser local storage—**zero intermediate servers, zero analytics, zero data leakage**.
 
 ---
 
-## Getting Started
+## ✨ Key Features
 
-### Prerequisites
-- Node.js (v18 or higher)
+### 📊 Multi-Mode Repository Catalog (Default Data Table)
+- **Detailed Data Table (Default View):** High-density tabular layout displaying stars, forks, open issues, primary language, disk size, and update timestamps.
+- **Alternative View Modes:** Switch in one click to **Compact List** or **Rich Cards Grid**.
+- **Instant Multi-Vector Search:** Fuzzy filtering across repository names, descriptions, programming languages, and assigned tags with zero network lag.
+- **Segmented Categories:** Filter instantly by Public, Private, Source, Forks, and Archived repositories.
+
+### 🌳 Interactive Visual Branch Network
+- **SVG Bézier Divergence Curves:** Clear visual graph mapping branches diverging from `main` or `master`.
+- **Ahead / Behind Differential:** Real-time computation of how many commits each branch is ahead or behind.
+- **Canvas Navigation Controls:**
+  - Mouse drag-to-pan across the network.
+  - Interactive mouse-wheel zoom and dedicated `+` / `-` / Reset zoom buttons.
+  - Fullscreen canvas mode for comprehensive workflow review.
+- **Searchable Repository Combobox:** Real-time search dropdown allowing instant switching between repositories.
+
+### 📄 Embedded Code Syntax Highlighter & Markdown Reader
+- **Code Viewer:** Syntax highlighting powered by **PrismJS** with Tomorrow Dark theme and line numbering.
+- **Markdown Viewer:** Full **GitHub Flavored Markdown (GFM)** rendering with tables, checklists, and formatted callouts via `react-markdown` and `remark-gfm`.
+- **Developer Utilities:** Raw text vs. formatted preview toggle, line count badge, and one-click clipboard copying.
+
+### 🧹 Workspace Hygiene Radar
+- **Stale Repository Detection:** Automatically highlights inactive repositories (> 6 months) for routine cleanup or archiving.
+- **Language Composition Breakdown:** Aggregates and visualizes tech stack distribution across your entire profile.
+
+### 🏷️ Local Custom Collections & Tags
+- Assign personal, non-destructive labels (e.g. *"Client Project"*, *"Core Engine"*, *"Archive Candidate"*) saved exclusively in your browser without altering upstream GitHub metadata.
+
+### 🔄 Integrated Local Sync Hub
+- Built-in companion center that interfaces with [GitHub-Sync-Hub](https://github.com/wabdelgilil/GitHub-Sync-Hub) to generate repository-tailored batch scripts (`.bat`) and PowerShell one-liners for safe local automated two-way synchronization.
+
+---
+
+## 🔒 Security & Privacy First
+
+- **Direct Client-to-API:** Requests flow directly from your browser to `api.github.com`.
+- **No Backend Infrastructure:** Hosted as a static bundle on GitHub Pages. There are no tracking scripts, third-party databases, or proxy servers.
+- **Token Isolation:** Your GitHub Personal Access Token (PAT) is stored exclusively in `localStorage` and can be purged with a single click at any time.
+
+---
+
+## 🚀 Quick Start
+
+### Live Web Version
+No installation required. Open the live deployment directly in any modern browser:
+👉 **[https://wabdelgilil.github.io/GitHub-Navigator/](https://wabdelgilil.github.io/GitHub-Navigator/)**
+
+### Running Locally
+
+#### Prerequisites
+- [Node.js](https://nodejs.org/) (v18 or higher)
 - npm or pnpm
 - A GitHub Personal Access Token (classic or fine-grained with `repo` and `read:user` permissions)
 
-### Installation & Local Run
+#### Installation
 ```bash
+# Clone the repository
 git clone https://github.com/wabdelgilil/GitHub-Navigator.git
 cd GitHub-Navigator
+
+# Install dependencies
 npm install
+
+# Start local development server
 npm run dev
 ```
 
-The application will start on `http://localhost:3000`.
+Visit `http://localhost:3000` in your browser.
 
-### Production Build
+#### Production Build
 ```bash
 npm run build
 npm run preview
@@ -80,11 +110,28 @@ npm run preview
 
 ---
 
-## Architecture Overview
+## 🛠️ Architecture & Tech Stack
 
-GitHub-Navigator is built as a pure client-side single-page application using:
-- **Vite** for optimized development and bundling
-- **React 18** and **TypeScript** (Strict Mode)
-- **Tailwind CSS** for layout and dark-mode styling
-- **Lucide Icons** for iconography
-- **Browser LocalStorage** for token persistence and custom metadata caching
+| Layer | Technology |
+| :--- | :--- |
+| **Runtime & Bundler** | Vite 5 |
+| **UI Framework** | React 18 |
+| **Language** | TypeScript 5 (Strict Mode) |
+| **Styling** | Tailwind CSS 3 |
+| **Iconography** | Lucide React |
+| **Syntax Highlighting** | PrismJS |
+| **Markdown Parsing** | react-markdown, remark-gfm |
+| **State & Persistence** | React Hooks + Browser LocalStorage |
+| **Hosting & CI/CD** | GitHub Pages + GitHub Actions |
+
+---
+
+## 🤝 Companion Project: GitHub-Sync-Hub
+
+For local Windows desktop automation, pair **GitHub-Navigator** with [GitHub-Sync-Hub](https://github.com/wabdelgilil/GitHub-Sync-Hub) — a zero-dependency suite of portable batch and PowerShell utilities for automated two-way Git syncing (`pull --rebase`, `commit`, and `push`).
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
