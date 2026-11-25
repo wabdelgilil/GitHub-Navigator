@@ -12,6 +12,7 @@ import {
   Code2,
   GitBranch,
   Archive,
+  FolderSync,
 } from 'lucide-react';
 import { GitHubRepo } from '../../types/github';
 import { useRepos } from '../../context/RepoContext';
@@ -21,12 +22,14 @@ import { Badge } from '../common/Badge';
 interface RepoCardProps {
   repo: GitHubRepo;
   onOpenTagModal: (repo: GitHubRepo) => void;
+  onOpenSyncModal: (repo: GitHubRepo) => void;
   onSelectRepoForTree: (repo: GitHubRepo) => void;
 }
 
 export const RepoCard: React.FC<RepoCardProps> = ({
   repo,
   onOpenTagModal,
+  onOpenSyncModal,
   onSelectRepoForTree,
 }) => {
   const { metadata, togglePinRepo, customTags } = useRepos();
@@ -181,6 +184,18 @@ export const RepoCard: React.FC<RepoCardProps> = ({
             >
               <Code2 className="w-3 h-3 text-[#58a6ff]" />
               <span>VS Code</span>
+            </button>
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onOpenSyncModal(repo);
+              }}
+              title="Local Sync Setup"
+              className="px-2 py-1 rounded bg-[#21262d] hover:bg-[#30363d] text-[#c9d1d9] hover:text-[#3fb950] text-[11px] flex items-center gap-1 transition-colors"
+            >
+              <FolderSync className="w-3 h-3" />
+              <span>Sync</span>
             </button>
           </div>
 

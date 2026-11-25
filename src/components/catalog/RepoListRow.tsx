@@ -12,6 +12,7 @@ import {
   Code2,
   GitBranch,
   Archive,
+  FolderSync,
 } from 'lucide-react';
 import { GitHubRepo } from '../../types/github';
 import { useRepos } from '../../context/RepoContext';
@@ -21,12 +22,14 @@ import { Badge } from '../common/Badge';
 interface RepoListRowProps {
   repo: GitHubRepo;
   onOpenTagModal: (repo: GitHubRepo) => void;
+  onOpenSyncModal: (repo: GitHubRepo) => void;
   onSelectRepoForTree: (repo: GitHubRepo) => void;
 }
 
 export const RepoListRow: React.FC<RepoListRowProps> = ({
   repo,
   onOpenTagModal,
+  onOpenSyncModal,
   onSelectRepoForTree,
 }) => {
   const { metadata, togglePinRepo, customTags } = useRepos();
@@ -167,6 +170,17 @@ export const RepoListRow: React.FC<RepoListRowProps> = ({
             className="p-1.5 rounded hover:bg-[#21262d] text-[#8b949e] hover:text-[#58a6ff] transition-colors"
           >
             <Tag className="w-3.5 h-3.5" />
+          </button>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpenSyncModal(repo);
+            }}
+            title="Local Sync Setup"
+            className="p-1.5 rounded hover:bg-[#21262d] text-[#8b949e] hover:text-[#3fb950] transition-colors"
+          >
+            <FolderSync className="w-3.5 h-3.5" />
           </button>
 
           <button

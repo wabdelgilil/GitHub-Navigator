@@ -6,12 +6,13 @@ An open-source, local-first personal command center and executive dashboard for 
 
 ## Key Highlights
 
-- **Multiple View Modes**: Seamless toggle between Cards Grid, Compact List, and Detailed Data Table.
+- **Multiple View Modes**: Default detailed Data Table, Compact List, and Cards Grid with fast switcher.
 - **Instant Multi-Vector Search**: Client-side fuzzy searching across repository names, topics, descriptions, and programming languages.
+- **Searchable Dropdown Select**: Fast searchable repository combobox in branch tree and commit views.
+- **Visual Branch Network**: Interactive SVG Bézier curve branching graph with drag-to-pan, mouse wheel / button zoom in/out, fullscreen canvas, and ahead/behind calculations.
+- **Embedded Code & Markdown Viewer**: PrismJS syntax highlighting (Tomorrow Dark) and GitHub Flavored Markdown viewer (`react-markdown` + `remark-gfm`) with line numbers, raw/preview toggle, and one-click copy.
+- **Local Sync Hub Companion**: Deep integration with `GitHub-Sync-Hub` companion scripts (`Sync_All_Projects_GUI.bat`, etc.), 1-click batch downloads, single-repo custom sync script generator, and automated Windows Task Scheduler guides.
 - **Segmented Catalog**: One-click toggling between Public, Private, Forked, Source, and Archived repositories.
-- **Visual Branch Divergence**: Graphical comparison of repository branches against the default branch, displaying exact ahead and behind commit counts.
-- **Commit Timeline**: Chronological commit flow with author details, short SHA identifiers, and direct links.
-- **Collapsible File Explorer**: Fast in-browser directory browsing and raw source previews without page reloads.
 - **Workspace Hygiene Radar**: Identifies repositories inactive for over six months to streamline profile maintenance.
 - **Local Custom Labels**: Personal tags and groupings stored in browser local storage without modifying remote repository settings.
 - **Local-First Security**: Personal Access Tokens communicate directly from the browser to the GitHub API. No intermediate backend servers or telemetry.

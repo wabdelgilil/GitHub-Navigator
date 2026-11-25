@@ -8,6 +8,7 @@ import { BranchTree } from './components/tree/BranchTree';
 import { HygieneRadar } from './components/radar/HygieneRadar';
 import { SettingsView } from './components/settings/SettingsView';
 import { AboutView } from './components/about/AboutView';
+import { LocalSyncView } from './components/sync/LocalSyncView';
 import { TokenModal } from './components/auth/TokenModal';
 import { Button } from './components/common/Button';
 import {
@@ -70,6 +71,8 @@ export const App: React.FC = () => {
         <main className="flex-1 p-6 lg:p-8 max-w-7xl mx-auto w-full overflow-x-hidden">
           {currentTab === 'about' ? (
             <AboutView />
+          ) : currentTab === 'sync' ? (
+            <LocalSyncView />
           ) : !token ? (
             /* Welcome / Onboarding Hero State */
             <div className="py-12 space-y-8 max-w-3xl mx-auto text-center">
@@ -142,6 +145,7 @@ export const App: React.FC = () => {
               {currentTab === 'tags' && (
                 <RepoCatalog onSelectRepoForTree={handleSelectRepoForTree} />
               )}
+              {currentTab === 'sync' && <LocalSyncView />}
               {currentTab === 'settings' && <SettingsView />}
             </div>
           )}

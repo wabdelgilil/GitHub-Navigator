@@ -1,9 +1,9 @@
 # System Requirements Specification (SRS)
-## OctoDeck — Personal Command Center & Intelligent Dashboard for GitHub
+## GitNavigator — Personal Command Center & Intelligent Dashboard for GitHub
 
 ### 1. Document Control & Metadata
-- **Project Name:** OctoDeck
-- **Document Version:** v1.0.0
+- **Project Name:** GitNavigator
+- **Document Version:** v1.1.0
 - **Classification:** Public Open-Source Software Specification
 - **Architectural Paradigm:** Pure Client-Side Single-Page Application (Vite / React / TypeScript / Tailwind CSS / LocalStorage & IndexedDB)
 - **Primary Domain:** Developer Productivity Tools & GitHub Ecosystem Management

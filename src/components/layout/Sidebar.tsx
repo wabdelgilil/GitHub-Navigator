@@ -9,6 +9,7 @@ import {
   FolderLock,
   Globe2,
   Info,
+  FolderSync,
 } from 'lucide-react';
 import { ViewFilter } from '../../types/app';
 import { cn } from '../../lib/utils/formatters';
@@ -37,6 +38,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const mainNavItems = [
     { id: 'repositories', label: 'Repository Catalog', icon: FolderGit2 },
     { id: 'tree', label: 'Git Tree & Commits', icon: GitBranch },
+    { id: 'sync', label: 'Local Sync Hub', icon: FolderSync },
     { id: 'radar', label: 'Workspace Radar', icon: Activity },
     { id: 'tags', label: 'Custom Tags', icon: Tags },
     { id: 'settings', label: 'Settings', icon: Settings },

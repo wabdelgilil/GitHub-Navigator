@@ -19,6 +19,7 @@ import { RepoCard } from './RepoCard';
 import { RepoListRow } from './RepoListRow';
 import { RepoTable } from './RepoTable';
 import { TagManagerModal } from './TagManagerModal';
+import { RepoSyncModal } from '../sync/RepoSyncModal';
 
 interface RepoCatalogProps {
   onSelectRepoForTree: (repo: GitHubRepo) => void;
@@ -42,6 +43,7 @@ export const RepoCatalog: React.FC<RepoCatalogProps> = ({ onSelectRepoForTree })
   } = useRepos();
 
   const [tagModalRepo, setTagModalRepo] = useState<GitHubRepo | null>(null);
+  const [syncModalRepo, setSyncModalRepo] = useState<GitHubRepo | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'list' | 'table'>('table');
 
   const filters: Array<{ id: ViewFilter; label: string; icon: React.ComponentType<{ className?: string }>; count: number }> = [
@@ -196,6 +198,7 @@ export const RepoCatalog: React.FC<RepoCatalogProps> = ({ onSelectRepoForTree })
               key={repo.id}
               repo={repo}
               onOpenTagModal={(target) => setTagModalRepo(target)}
+              onOpenSyncModal={(target) => setSyncModalRepo(target)}
               onSelectRepoForTree={onSelectRepoForTree}
             />
           ))}
@@ -207,6 +210,7 @@ export const RepoCatalog: React.FC<RepoCatalogProps> = ({ onSelectRepoForTree })
               key={repo.id}
               repo={repo}
               onOpenTagModal={(target) => setTagModalRepo(target)}
+              onOpenSyncModal={(target) => setSyncModalRepo(target)}
               onSelectRepoForTree={onSelectRepoForTree}
             />
           ))}
@@ -215,6 +219,7 @@ export const RepoCatalog: React.FC<RepoCatalogProps> = ({ onSelectRepoForTree })
         <RepoTable
           repositories={filteredRepositories}
           onOpenTagModal={(target) => setTagModalRepo(target)}
+          onOpenSyncModal={(target) => setSyncModalRepo(target)}
           onSelectRepoForTree={onSelectRepoForTree}
         />
       )}
@@ -224,6 +229,13 @@ export const RepoCatalog: React.FC<RepoCatalogProps> = ({ onSelectRepoForTree })
         repo={tagModalRepo}
         isOpen={!!tagModalRepo}
         onClose={() => setTagModalRepo(null)}
+      />
+
+      {/* Repo Sync Modal */}
+      <RepoSyncModal
+        repo={syncModalRepo}
+        isOpen={!!syncModalRepo}
+        onClose={() => setSyncModalRepo(null)}
       />
     </div>
   );
