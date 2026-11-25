@@ -8,6 +8,7 @@ import {
   ShieldAlert,
   FolderLock,
   Globe2,
+  Info,
 } from 'lucide-react';
 import { ViewFilter } from '../../types/app';
 import { cn } from '../../lib/utils/formatters';
@@ -39,6 +40,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'radar', label: 'Workspace Radar', icon: Activity },
     { id: 'tags', label: 'Custom Tags', icon: Tags },
     { id: 'settings', label: 'Settings', icon: Settings },
+    { id: 'about', label: 'About Project', icon: Info },
   ];
 
   const filterItems: Array<{ id: ViewFilter; label: string; icon: React.ComponentType<{ className?: string }>; count: number; color?: string }> = [

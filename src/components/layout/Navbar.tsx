@@ -6,6 +6,7 @@ import {
   LogOut,
   ExternalLink,
   Zap,
+  Github,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Button } from '../common/Button';
@@ -90,6 +91,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               Sync
             </Button>
           )}
+
+          {/* GitHub Repository Link Button */}
+          <a
+            href="https://github.com/wabdelgilil/gitnavigator"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="View GitNavigator Source Code on GitHub"
+            className="p-2 rounded-lg text-[#8b949e] hover:text-white hover:bg-[#21262d] border border-transparent hover:border-[#30363d] transition-colors flex items-center gap-1.5 text-xs font-medium"
+          >
+            <Github className="w-4 h-4 text-[#58a6ff]" />
+            <span className="hidden sm:inline">GitHub</span>
+          </a>
 
           {user ? (
             <div className="flex items-center gap-2.5 pl-2 border-l border-[#30363d]">

@@ -7,6 +7,7 @@ import { RepoCatalog } from './components/catalog/RepoCatalog';
 import { BranchTree } from './components/tree/BranchTree';
 import { HygieneRadar } from './components/radar/HygieneRadar';
 import { SettingsView } from './components/settings/SettingsView';
+import { AboutView } from './components/about/AboutView';
 import { TokenModal } from './components/auth/TokenModal';
 import { Button } from './components/common/Button';
 import {
@@ -67,7 +68,9 @@ export const App: React.FC = () => {
 
         {/* Main Content Area */}
         <main className="flex-1 p-6 lg:p-8 max-w-7xl mx-auto w-full overflow-x-hidden">
-          {!token ? (
+          {currentTab === 'about' ? (
+            <AboutView />
+          ) : !token ? (
             /* Welcome / Onboarding Hero State */
             <div className="py-12 space-y-8 max-w-3xl mx-auto text-center">
               <div className="flex justify-center">
