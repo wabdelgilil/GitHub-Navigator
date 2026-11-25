@@ -8,11 +8,16 @@ import {
   ShieldAlert,
   Archive,
   Layers,
+  LayoutGrid,
+  List,
+  Table as TableIcon,
 } from 'lucide-react';
 import { GitHubRepo } from '../../types/github';
 import { SortField, ViewFilter } from '../../types/app';
 import { useRepos } from '../../context/RepoContext';
 import { RepoCard } from './RepoCard';
+import { RepoListRow } from './RepoListRow';
+import { RepoTable } from './RepoTable';
 import { TagManagerModal } from './TagManagerModal';
 
 interface RepoCatalogProps {
@@ -37,6 +42,7 @@ export const RepoCatalog: React.FC<RepoCatalogProps> = ({ onSelectRepoForTree })
   } = useRepos();
 
   const [tagModalRepo, setTagModalRepo] = useState<GitHubRepo | null>(null);
+  const [viewMode, setViewMode] = useState<'grid' | 'list' | 'table'>('grid');
 
   const filters: Array<{ id: ViewFilter; label: string; icon: React.ComponentType<{ className?: string }>; count: number }> = [
     { id: 'all', label: 'All', icon: Layers, count: workspaceStats.totalRepos },
@@ -80,7 +86,7 @@ export const RepoCatalog: React.FC<RepoCatalogProps> = ({ onSelectRepoForTree })
           })}
         </div>
 
-        {/* Custom Tag Filter & Sorting */}
+        {/* Custom Tag Filter, Sorting & View Mode Switcher */}
         <div className="flex items-center flex-wrap gap-2.5">
           {/* Custom Tag Filter Pill */}
           {customTags.length > 0 && (
@@ -120,10 +126,41 @@ export const RepoCatalog: React.FC<RepoCatalogProps> = ({ onSelectRepoForTree })
               {sortOrder}
             </button>
           </div>
+
+          {/* View Mode Toggle (Grid / List / Table) */}
+          <div className="flex items-center bg-[#0d1117] border border-[#30363d] rounded-lg p-1">
+            <button
+              onClick={() => setViewMode('grid')}
+              title="Cards Grid View"
+              className={`p-1.5 rounded-md transition-colors ${
+                viewMode === 'grid' ? 'bg-[#1f6feb] text-white shadow-sm' : 'text-[#8b949e] hover:text-[#c9d1d9]'
+              }`}
+            >
+              <LayoutGrid className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={() => setViewMode('list')}
+              title="Compact List View"
+              className={`p-1.5 rounded-md transition-colors ${
+                viewMode === 'list' ? 'bg-[#1f6feb] text-white shadow-sm' : 'text-[#8b949e] hover:text-[#c9d1d9]'
+              }`}
+            >
+              <List className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={() => setViewMode('table')}
+              title="Data Table View"
+              className={`p-1.5 rounded-md transition-colors ${
+                viewMode === 'table' ? 'bg-[#1f6feb] text-white shadow-sm' : 'text-[#8b949e] hover:text-[#c9d1d9]'
+              }`}
+            >
+              <TableIcon className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Catalog Grid View */}
+      {/* Main Content Area based on View Mode */}
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {[...Array(6)].map((_, i) => (
@@ -152,7 +189,7 @@ export const RepoCatalog: React.FC<RepoCatalogProps> = ({ onSelectRepoForTree })
             Try adjusting your search terms, clearing custom label filters, or selecting a different tab.
           </p>
         </div>
-      ) : (
+      ) : viewMode === 'grid' ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredRepositories.map((repo) => (
             <RepoCard
@@ -163,6 +200,23 @@ export const RepoCatalog: React.FC<RepoCatalogProps> = ({ onSelectRepoForTree })
             />
           ))}
         </div>
+      ) : viewMode === 'list' ? (
+        <div className="space-y-2">
+          {filteredRepositories.map((repo) => (
+            <RepoListRow
+              key={repo.id}
+              repo={repo}
+              onOpenTagModal={(target) => setTagModalRepo(target)}
+              onSelectRepoForTree={onSelectRepoForTree}
+            />
+          ))}
+        </div>
+      ) : (
+        <RepoTable
+          repositories={filteredRepositories}
+          onOpenTagModal={(target) => setTagModalRepo(target)}
+          onSelectRepoForTree={onSelectRepoForTree}
+        />
       )}
 
       {/* Tag Assignment Modal */}

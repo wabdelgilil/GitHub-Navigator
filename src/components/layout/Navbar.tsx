@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Layers,
   Search,
   KeyRound,
   RefreshCw,
@@ -12,6 +11,7 @@ import { useAuth } from '../../context/AuthContext';
 import { Button } from '../common/Button';
 import { Badge } from '../common/Badge';
 import { TokenModal } from '../auth/TokenModal';
+import { Logo } from '../common/Logo';
 
 interface NavbarProps {
   onSearchChange: (query: string) => void;
@@ -34,15 +34,13 @@ export const Navbar: React.FC<NavbarProps> = ({
       <header className="sticky top-0 z-30 h-16 bg-[#161b22]/90 backdrop-blur-md border-b border-[#30363d] px-6 flex items-center justify-between gap-4">
         {/* Brand & Identity */}
         <div className="flex items-center gap-3 shrink-0">
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-[#1f6feb] to-[#238636] flex items-center justify-center shadow-lg shadow-[#1f6feb]/20">
-            <Layers className="w-5 h-5 text-white" />
-          </div>
+          <Logo size={36} />
           <div>
             <div className="flex items-center gap-2">
-              <span className="font-bold tracking-tight text-white text-base">OctoDeck</span>
+              <span className="font-bold tracking-tight text-white text-base">GitNavigator</span>
               <Badge variant="success" size="sm">Local-First</Badge>
             </div>
-            <p className="text-[10px] text-[#8b949e] font-mono leading-none">GitHub Command Center</p>
+            <p className="text-[10px] text-[#8b949e] font-mono leading-none">Executive Command Center</p>
           </div>
         </div>
 

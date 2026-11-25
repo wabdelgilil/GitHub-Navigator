@@ -1,11 +1,12 @@
-# OctoDeck
+# GitNavigator
 
-An open-source, local-first personal command center and workspace dashboard for managing your GitHub repositories, branches, and commit histories with zero latency.
+An open-source, local-first personal command center and executive dashboard for managing your GitHub repositories, branches, and commit histories with zero latency.
 
 ---
 
 ## Key Highlights
 
+- **Multiple View Modes**: Seamless toggle between Cards Grid, Compact List, and Detailed Data Table.
 - **Instant Multi-Vector Search**: Client-side fuzzy searching across repository names, topics, descriptions, and programming languages.
 - **Segmented Catalog**: One-click toggling between Public, Private, Forked, Source, and Archived repositories.
 - **Visual Branch Divergence**: Graphical comparison of repository branches against the default branch, displaying exact ahead and behind commit counts.
@@ -26,8 +27,8 @@ An open-source, local-first personal command center and workspace dashboard for 
 
 ### Installation & Local Run
 ```bash
-git clone https://github.com/your-username/octodeck.git
-cd octodeck
+git clone https://github.com/wabdelgilil/gitnavigator.git
+cd gitnavigator
 npm install
 npm run dev
 ```
@@ -44,7 +45,7 @@ npm run preview
 
 ## Architecture Overview
 
-OctoDeck is built as a pure client-side single-page application using:
+GitNavigator is built as a pure client-side single-page application using:
 - **Vite** for optimized development and bundling
 - **React 18** and **TypeScript** (Strict Mode)
 - **Tailwind CSS** for layout and dark-mode styling

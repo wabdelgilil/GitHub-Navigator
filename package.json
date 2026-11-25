@@ -1,9 +1,9 @@
 {
-  "name": "octodeck",
+  "name": "gitnavigator",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
-  "description": "Personal Command Center & Intelligent Dashboard for GitHub",
+  "description": "Executive Command Center & Personal Dashboard for GitHub",
   "author": "Engineering Operations",
   "license": "MIT",
   "scripts": {

@@ -14,8 +14,8 @@ import {
   ShieldCheck,
   Zap,
   GitBranch,
-  Layers,
 } from 'lucide-react';
+import { Logo } from './components/common/Logo';
 import { GitHubRepo } from './types/github';
 
 export const App: React.FC = () => {
@@ -70,8 +70,8 @@ export const App: React.FC = () => {
           {!token ? (
             /* Welcome / Onboarding Hero State */
             <div className="py-12 space-y-8 max-w-3xl mx-auto text-center">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#1f6feb] to-[#238636] flex items-center justify-center mx-auto shadow-xl shadow-[#1f6feb]/20">
-                <Layers className="w-8 h-8 text-white" />
+              <div className="flex justify-center">
+                <Logo size={72} />
               </div>
 
               <div className="space-y-3">
@@ -79,7 +79,7 @@ export const App: React.FC = () => {
                   Take Control of Your GitHub Universe
                 </h1>
                 <p className="text-sm text-[#8b949e] max-w-xl mx-auto leading-relaxed">
-                  OctoDeck is a local-first personal command center that organizes your repositories,
+                  GitNavigator is a local-first personal command center that organizes your repositories,
                   visualizes branch divergence, flags stale projects, and gives you instant search with zero latency.
                 </p>
               </div>
