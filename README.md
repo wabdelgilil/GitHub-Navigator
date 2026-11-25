@@ -126,9 +126,23 @@ npm run preview
 
 ---
 
-## 🤝 Companion Project: GitHub-Sync-Hub
+## 🤝 Official Desktop Companion: GitHub-Sync-Hub
 
-For local Windows desktop automation, pair **GitHub-Navigator** with [GitHub-Sync-Hub](https://github.com/wabdelgilil/GitHub-Sync-Hub) — a zero-dependency suite of portable batch and PowerShell utilities for automated two-way Git syncing (`pull --rebase`, `commit`, and `push`).
+For local Windows desktop automation, pair **GitHub-Navigator** with [GitHub-Sync-Hub](https://github.com/wabdelgilil/GitHub-Sync-Hub) — a zero-dependency suite of portable batch and PowerShell utilities for automated two-way Git synchronization (`pull --rebase --autostash`, `commit`, and `push`).
+
+### Standalone 1-Click Downloads (No Git Clone Required)
+
+| Tool | Interface | Direct Download | Best For |
+| :--- | :--- | :---: | :--- |
+| **`Sync_All_Projects_GUI.bat`** | Modern Dark WPF + System Tray | [⬇️ **Download GUI**](https://raw.githubusercontent.com/wabdelgilil/GitHub-Sync-Hub/main/tools/Sync_All_Projects_GUI.bat) | Multi-repo dashboard, live folder browser, and notifications |
+| **`Sync_All_Projects.bat`** | ANSI Terminal + Spinners | [⬇️ **Download CLI**](https://raw.githubusercontent.com/wabdelgilil/GitHub-Sync-Hub/main/tools/Sync_All_Projects.bat) | Bulk terminal sync & headless `--auto` Task Scheduler |
+| **`sync_github_gui.bat`** | Compact Dark WPF | [⬇️ **Download Single-GUI**](https://raw.githubusercontent.com/wabdelgilil/GitHub-Sync-Hub/main/tools/sync_github_gui.bat) | Visual single-repo status & 1-click push |
+| **`sync_github.bat`** | Lightweight Terminal | [⬇️ **Download Single-CLI**](https://raw.githubusercontent.com/wabdelgilil/GitHub-Sync-Hub/main/tools/sync_github.bat) | Double-click or CLI single-repo sync |
+
+```powershell
+# Instant PowerShell download to current directory:
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/wabdelgilil/GitHub-Sync-Hub/main/tools/Sync_All_Projects_GUI.bat" -OutFile "Sync_All_Projects_GUI.bat"
+```
 
 ---
 
