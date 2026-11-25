@@ -42,7 +42,7 @@ export const RepoCatalog: React.FC<RepoCatalogProps> = ({ onSelectRepoForTree })
   } = useRepos();
 
   const [tagModalRepo, setTagModalRepo] = useState<GitHubRepo | null>(null);
-  const [viewMode, setViewMode] = useState<'grid' | 'list' | 'table'>('grid');
+  const [viewMode, setViewMode] = useState<'grid' | 'list' | 'table'>('table');
 
   const filters: Array<{ id: ViewFilter; label: string; icon: React.ComponentType<{ className?: string }>; count: number }> = [
     { id: 'all', label: 'All', icon: Layers, count: workspaceStats.totalRepos },

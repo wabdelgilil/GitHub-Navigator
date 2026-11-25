@@ -17,6 +17,7 @@ import { Button } from '../common/Button';
 import { Badge } from '../common/Badge';
 import { CommitTimeline } from './CommitTimeline';
 import { FileTreeExplorer } from './FileTreeExplorer';
+import { VisualBranchNetwork } from './VisualBranchNetwork';
 
 export const BranchTree: React.FC = () => {
   const { token } = useAuth();
@@ -206,7 +207,16 @@ export const BranchTree: React.FC = () => {
       {viewMode === 'files' ? (
         <FileTreeExplorer repo={selectedRepo} defaultBranch={defaultBranch} />
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="space-y-6">
+          {/* Interactive SVG Branch Network Tree */}
+          <VisualBranchNetwork
+            branches={branches}
+            defaultBranch={defaultBranch}
+            selectedBranch={selectedBranch}
+            onSelectBranch={setSelectedBranch}
+          />
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column: Branch Topology & Divergence */}
           <div className="space-y-4">
             <div className="bg-[#161b22] border border-[#30363d] rounded-xl p-4">
@@ -304,6 +314,7 @@ export const BranchTree: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
       )}
     </div>
   );
