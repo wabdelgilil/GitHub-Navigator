@@ -13,6 +13,7 @@ import { GitHubRepo, GitHubTreeItem } from '../../types/github';
 import { githubClient } from '../../lib/api/github-client';
 import { useAuth } from '../../context/AuthContext';
 import { formatBytes } from '../../lib/utils/formatters';
+import { CodeAndMarkdownViewer } from './CodeAndMarkdownViewer';
 
 interface FileTreeExplorerProps {
   repo: GitHubRepo;
@@ -231,9 +232,13 @@ export const FileTreeExplorer: React.FC<FileTreeExplorerProps> = ({
             {loadingFile ? (
               <div className="p-12 text-center text-xs text-[#8b949e]">Loading file preview...</div>
             ) : (
-              <pre className="flex-1 overflow-auto bg-[#161b22] border border-[#30363d] rounded-lg p-4 font-mono text-xs text-[#c9d1d9] leading-relaxed max-h-[500px]">
-                {fileContent}
-              </pre>
+              <div className="flex-1 overflow-hidden">
+                <CodeAndMarkdownViewer
+                  filename={selectedFile.path}
+                  content={fileContent || ''}
+                  filesize={selectedFile.size}
+                />
+              </div>
             )}
           </div>
         ) : (
